@@ -3,6 +3,7 @@ package dev.matias.todolist.task;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CurrentTimestamp;
 
 import jakarta.persistence.Column;
@@ -27,6 +28,6 @@ public class TaskModel {
     private LocalDateTime endDate;
     private String priority;
 
-    @CurrentTimestamp
+    @CreationTimestamp
     private LocalDateTime createdAt;
 }
