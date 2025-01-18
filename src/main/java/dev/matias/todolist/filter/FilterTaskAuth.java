@@ -30,11 +30,9 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        System.out.println("é task");
         // get user and password
 
         var authorization = request.getHeader("Authorization");
-        System.out.println("Authorization " + authorization);
 
         // "Basic" => type of authorization
         var authEncoded = authorization.substring("Basic".length()).trim();
@@ -69,6 +67,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             return;
         }
 
+        request.setAttribute("idUser", user.getId());
         filterChain.doFilter(request, response);
     }
 
