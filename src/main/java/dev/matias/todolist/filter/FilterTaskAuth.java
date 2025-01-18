@@ -26,7 +26,6 @@ public class FilterTaskAuth extends OncePerRequestFilter {
 
         var servletPath = request.getServletPath();
         if (!servletPath.equals("/tasks/")) {
-            System.out.println("nao e task");
             filterChain.doFilter(request, response);
             return;
         }
