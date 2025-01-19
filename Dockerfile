@@ -1,4 +1,4 @@
-FROM ubuntu:latest as build
+FROM ubuntu:24.04 as build
 
 RUN apt-get update
 RUN apt-get install openjdk-21 
