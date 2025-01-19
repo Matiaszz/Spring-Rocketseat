@@ -1,12 +1,18 @@
-FROM maven:3.9.4-openjdk-21 AS build
+FROM ubuntu:latest as build
+
+RUN apt-get update
+RUN apt-get install openjdk-17 -y
 
 COPY . .
 
+RUN apt-get install maven -y
+
+# Install dependencies
 RUN mvn clean install
 
-FROM openjdk:21-jdk-slim
+FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
 COPY --from=build /target/todolist-1.0.0.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
