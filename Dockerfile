@@ -3,9 +3,9 @@ FROM ubuntu:latest AS build
 RUN apt-get update && \
     apt-get install -y wget software-properties-common
 
-RUN wget -q https://packages.openjdk.java.net/openjdk21/ubuntu/openjdk-21_21.0.5-1_amd64.deb && \
-    dpkg -i openjdk-21_21.0.5-1_amd64.deb && \
-    apt-get install -f -y  # To fix dependencies if needed
+RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update
+
+RUN apt-get install -y openjdk-21
 
 COPY . .
 
