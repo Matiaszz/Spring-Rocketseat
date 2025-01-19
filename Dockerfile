@@ -1,14 +1,4 @@
-FROM ubuntu:22.04 AS build
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository ppa:openjdk-r/ppa && \
-    apt-get update && \
-    apt-get install -y openjdk-21 maven && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+FROM maven:3.9.4-openjdk-21 AS build
 
 COPY . .
 
