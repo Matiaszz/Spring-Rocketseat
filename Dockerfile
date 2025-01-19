@@ -1,7 +1,11 @@
+FROM ubuntu:22.04 AS build
 
-FROM ubuntu:latest AS build
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:openjdk-r/ppa && \
+    apt-get update && \
     apt-get install -y openjdk-21 maven && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -15,5 +19,4 @@ EXPOSE 8080
 
 COPY --from=build /target/todolist-1.0.0.jar app.jar
 
-# Set the entry point for the container
 ENTRYPOINT ["java", "-jar", "app.jar"]
